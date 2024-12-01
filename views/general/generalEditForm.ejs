@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle %></title>
+    <script src="/javascripts/RequestManager.js"></script>
+    <script src="/javascripts/FormManager.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/recet-styles.css" />
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+    <link rel="stylesheet" href="/stylesheets/form.css" />
+
+    <style>
+      .error-message {
+        color: red;
+        font-size: 0.9em;
+      }
+      .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .field-container {
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('../sections/header', { title: '' }) %>
+    <div class="container">
+      <div class="form-container">
+        <h1><%= headerTitle %></h1>
+
+        <div id="errors"></div>
+        <div id="container"></div>
+      </div>
+
+      <script type="module">
+                const fields = <%- JSON.stringify(fields) %>;
+                const initialValues = <%- JSON.stringify(initialValues) %>;
+              const submitUrl = '<%- submitUrl %>';
+              const redirectUrl = '<%- redirectUrl %>';
+
+
+
+        function displayErrors(errorsList) {
+            const errorsContainer = document.getElementById('errors')
+                    errorsContainer.innerHTML=''
+                    const ul = document.createElement('ul')
+                    res.errors.forEach(error=>{
+                        const li = document.createElement('li')
+                        li.innerText=error.message
+                        ul.append(li)
+                    })
+        }
+
+
+              const submitCallback =async (data) => {
+                const res = await RequestManager.doPostRequest(submitUrl, data, redirectUrl);
+                if(res.errors){
+                  displayErrors(errors)
+                }
+              };
+
+              document.addEventListener('DOMContentLoaded', () => {
+                const form = new FormManager(fields, submitCallback, initialValues);
+                  form.render('container');
+                });
+      </script>
+    </div>
+  </body>
+</html>

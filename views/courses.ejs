@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/recet-styles.css" />
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+    <link rel="stylesheet" href="/stylesheets/footer.css" />
+    <link rel="stylesheet" href="/stylesheets/course.css" />
+    <script src="/javascripts/RequestManager.js"></script>
+
+    <title><%=headerTitle%></title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <%- include('sections/header', {title: 'Student form'}) %>
+      <main class="page">
+         <div class="container">
+            <% courses.forEach(course => { %>
+              <div class="course">
+                <div class="course-header">
+                  <div class="course-title">
+                     <h3>Course title </h3>
+                     <h3>Duration </h3>
+                     <h3>Students </h3>
+                     <h3>Seminars </h3>
+                     <h3>Actions </h3>
+
+                  </div>
+                  <div class="course-info">
+                    <div class="course-name"> <%= course.course %></div>
+                    <div class="course-duration"><%= course.duration %> hours</div>
+                    <div class="course-students"><%= course.students %></div>
+                    <div class="seminars-container">
+                     <% course.seminars.forEach(seminar => { %>
+                       <div class="seminar">
+                         <div class="seminar-info">
+                           <div class="seminar-title"><span>Title: <%= seminar.seminar %></span></div>
+                           <div class="seminar-title"><span>Duration: <%= seminar.duration %> hours</span></div>
+                           <div class="seminar-student-name"><span>Student: <%= seminar.student.name %></span></div> 
+                         </div>
+                         
+                       </div>
+                     <% }); %>
+                   </div>
+                   <div>
+                     <button
+                     class="delete-course-btn"
+                     onclick="RequestManager.deleteRequest('<%= deleteCourseRoute%>', '<%= course._id %>')"
+                   >
+                     Delete course
+                   </button>
+                   </div>
+                  </div>
+          
+                 
+                </div>
+          
+                <div class="seminars">
+                  <h3 class="seminars-title">Add seminars</h3>
+                  
+          
+                  <form action="<%=addSeminarBase%>/<%= course._id%>" method="POST" class="seminar-form">
+                    <input
+                      type="text"
+                      name="seminar"
+                      placeholder="Seminar title"
+                      required
+                      class="seminar-input seminar-title-input"
+                    />
+                    <input
+                      type="number"
+                      name="duration"
+                      placeholder="Duration"
+                      required
+                      class="seminar-input seminar-duration-input"
+                    />
+                    <select name="student" required class="seminar-select">
+                      <% students.forEach(student => { %>
+                        <option value="<%= student._id %>"><%= student.name %></option>
+                      <% }); %>
+                    </select>
+                    <button type="submit" class="submit-seminar-btn">Add seminar</button>
+                  </form>
+                </div>
+              </div>
+               <% }); %>
+               <a href="/courses/register" class="add-user-btn">Add course</a>
+             </main>
+             <script>
+               // Оновлення сторінки після додавання/видалення коментарів
+               document.querySelectorAll('.comments form').forEach((form) => {
+                 form.addEventListener('submit', function () {
+                   location.reload()
+                 })
+               })
+             </script>
+           </div>
+      </main>
+      <%- include('sections/footer', {title: 'footer'}) %>
+    </div>
+  </body>
+</html>

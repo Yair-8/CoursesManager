@@ -1,0 +1,45 @@
+header {
+  background-color: #9d8189;
+  padding: 20px;
+  text-align: center;
+  z-index: 10;
+}
+.nav-list {
+  display: flex; /* Use flexbox to lay out nav items horizontally */
+  justify-content: center; /* Center the nav items */
+  align-items: center; /* Vertically align the nav items */
+  padding: 0;
+  margin: 0;
+}
+.nav-list li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.nav-list li a {
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.nav-list li a:hover {
+  color: rgb(55, 53, 53);
+}
+
+.site-title {
+  margin: 10px 0 0;
+  font-size: 2em;
+}
+
+.user {
+  margin-left: 20px; /* Add some space before the username */
+}
+@media (max-width: 768px) {
+  .nav-list {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    text-align: left;
+  }
+  .nav-list li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}

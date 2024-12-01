@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle %></title>
+    <script src="/javascripts/ListDataManager.js"></script>
+    <script src="/javascripts/RequestManager.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/recet-styles.css" />
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+    <link rel="stylesheet" href="/stylesheets/form.css" />
+  </head>
+  <body>
+    <%- include('../sections/header', { title: '' }) %>
+    <h1><%= headerTitle %></h1>
+    <div id="table-container"></div>
+    <hr />
+    <a href="<%= addNewRoute %>">Додати</a>
+
+    <script>
+      window.onload = function () {
+        // Функція для створення посилання для редагування елемента
+          // Шлях для видалення елемента
+        const deleteRoute = '<%= deleteRoute %>'
+
+        // Функція для видалення елемента
+        async function deleteFunction(id) {
+          await RequestManager.deleteRequest(deleteRoute, id)
+          window.location.reload()
+        }
+        // Дані для відображення (передаються з сервера)
+        const data = <%- JSON.stringify(data) %>
+        const fields = <%- JSON.stringify(fields) %>
+
+        const createLinkFunction = (id)=> `<%- editLinkBase%>/${id}`
+          // Відображення таблиці
+          const table = ListDataManager.createTableFromList(data, fields, createLinkFunction, deleteFunction)
+
+          document.getElementById('table-container').append(table)
+      }
+    </script>
+  </body>
+</html>

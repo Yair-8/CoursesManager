@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/recet-styles.css" />
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+    <link rel="stylesheet" href="/stylesheets/footer.css" />
+    <link rel="stylesheet" href="/stylesheets/form.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <%- include('sections/header', {title: 'Students form'})%>
+      <main class="container">
+        <% if (errors?.length > 0) { %>
+        <ul>
+          <% errors.forEach(function(error) { %>
+          <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+        <hr />
+        <% } %>
+        <form
+          action="/students/register<%= data?.id ? '/' + data.id : '' %>"
+          method="post"
+        >
+          <label
+            >Student's Name
+            <input
+              type="text"
+              name="name"
+              placeholder="name"
+              value="<%= data ? data.name : '' %>"
+            />
+          </label>
+          <label>
+            Student's Age
+            <input
+              type="number"
+              name="age"
+              placeholder="age"
+              value="<%= data ? data.age : '' %>"
+            />
+          </label>
+          <label>
+            Student's Average Score
+            <input
+              type="number"
+              name="averageScore"
+              placeholder="average score"
+              value="<%= data ? data.averageScore : '' %>"
+            />
+          </label>
+          <button type="submit" class="submit-button">Register</button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

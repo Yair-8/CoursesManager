@@ -1,0 +1,134 @@
+.container {
+  padding: 20px;
+}
+
+.course {
+  border: 1px solid #e3dcdc;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+.seminars {
+  padding: 10px;
+  border: 1px solid #413c3c;
+}
+.course-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.course-title {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  background-color: #b1b1b1;
+  padding: 10px;
+}
+.course-info {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+
+  border: 1px solid #413c3c;
+}
+
+.course-name,
+.course-duration,
+.course-students {
+  font-weight: bold;
+  padding: 10px;
+}
+
+.delete-course-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.delete-course-btn:hover {
+  background-color: darkred;
+}
+
+.seminars-title,
+.course-title {
+  font-size: 20px;
+}
+
+.seminars-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.seminar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f3e7e7;
+}
+.seminar:nth-child(odd) {
+  background-color: #dddddd;
+}
+
+.seminar-info {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  line-height: 1.2;
+}
+
+.delete-seminar-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.delete-seminar-btn:hover {
+  background-color: darkred;
+}
+
+.seminar-form {
+  margin-top: 20px;
+}
+
+.seminar-input {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.seminar-select {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.submit-seminar-btn {
+  padding: 5px 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-seminar-btn:hover {
+  background-color: darkgreen;
+}
+
+.course-divider {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+}

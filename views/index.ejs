@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/recet-styles.css" />
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+    <link rel="stylesheet" href="/stylesheets/footer.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <%- include('sections/header', {title: 'User form'})%>
+      <main class="container">
+        <h1><%= title %></h1>
+        <p class="instructions">
+          Розробіть веб-додаток для управління курсами та студентами.
+        </p>
+        <p class="instructions">
+          У базі даних будуть дві основні моделі: Course (курс: назва курсу,
+          тривалість, список студентів) та Student (студент: ім’я, вік, середній
+          бал).
+        </p>
+        <p class="instructions">
+          Кожен курс може мати список студентів (кілька студентів).
+        </p>
+        <p class="instructions">
+          Курс також може містити масив семінарів, які проводять студенти (кожен
+          семінар є об'єктом з полями: тема семінару, відповідальний студент,
+          тривалість семінару).
+        </p>
+      </main>
+      <%-include('sections/footer', {title: 'footer'})%>
+    </div>
+  </body>
+</html>
